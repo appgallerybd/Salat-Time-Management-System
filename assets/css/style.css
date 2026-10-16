@@ -3,7 +3,7 @@
   font-family: "SolaimanLipi";
   src: url("https://cdn.jsdelivr.net/gh/omicronlab/solaimanlipi@master/SolaimanLipi.ttf") format("truetype");
   font-style: normal;
-  font-weight: 400 700;
+  font-weight: 400;
   font-display: swap;
 }
 
@@ -797,4 +797,183 @@ input:focus-visible {
     animation-duration: .01ms !important;
     transition-duration: .01ms !important;
   }
+}
+
+
+/* Premium desktop navigation, settings pages, theme system, and reliable Bengali typography */
+@font-face {
+  font-family: "SolaimanLipi";
+  src: url("https://cdn.jsdelivr.net/gh/omicronlab/solaimanlipi@master/SolaimanLipi.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+:root {
+  --page-bg: #f5f8f6;
+  --surface: #ffffff;
+  --surface-soft: #f0faf4;
+  --text: #193b32;
+  --muted-text: #74847c;
+  --border: #e3ebe6;
+}
+html, body, button, input, select, textarea {
+  font-family: "SolaimanLipi", "Hind Siliguri", "Noto Sans Bengali", sans-serif;
+}
+body { background: var(--page-bg); color: var(--text); }
+.app { max-width: 1180px; background: transparent; }
+.hero { padding: 18px 28px 22px; border-radius: 0 0 28px 28px; }
+.hero-toolbar { align-items: center; gap: 24px; }
+.brand { text-decoration: none; color: inherit; flex: 0 0 auto; }
+.brand-mark {
+  width: 54px; height: 54px; border-radius: 18px;
+  border: 1px solid rgba(255,255,255,.44);
+  background: linear-gradient(145deg, rgba(255,255,255,.24), rgba(240,217,162,.08));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.28), 0 8px 22px rgba(0,0,0,.12);
+}
+.brand-icon { width: 34px !important; height: 34px !important; stroke-width: 1.45; }
+.brand strong { font-size: 24px; }
+.brand small { margin-top: 1px; font-size: 12px; }
+.top-nav {
+  display: flex; align-items: center; justify-content: flex-end; gap: 4px;
+  flex: 1; min-width: 0;
+}
+.top-nav .nav-item {
+  display: inline-flex; align-items: center; justify-content: center;
+  flex: 0 0 auto; min-height: 40px; padding: 8px 11px;
+  border: 1px solid transparent; border-radius: 12px;
+  color: #e1f1e9; background: transparent; font-size: 13px;
+  line-height: 1.3; white-space: nowrap; text-align: center;
+}
+.top-nav .nav-item:hover { background: rgba(255,255,255,.1); }
+.top-nav .nav-item.active {
+  color: #fff; background: rgba(255,255,255,.15);
+  border-color: rgba(255,255,255,.18); font-weight: 600;
+}
+.main-content { padding: 28px clamp(16px, 3vw, 34px) 42px; }
+.page.active { animation: page-in .2s ease-out; }
+.section-heading { margin-bottom: 20px; }
+.section-heading h2 { font-size: clamp(22px, 2vw, 28px); }
+.next-card { padding: 22px 24px; border-radius: 24px; }
+.prayer-list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.prayer-card {
+  min-height: 104px; padding: 18px; border-radius: 21px;
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.prayer-card:hover { transform: translateY(-2px); box-shadow: 0 12px 25px rgba(18,59,39,.08); border-color: #c8dfd1; }
+.prayer-card:last-child { grid-column: auto; }
+.prayer-icon { width: 52px; height: 52px; border-radius: 17px; }
+.prayer-info h3 { font-size: 19px; }
+.prayer-info p { font-size: 12px; }
+.prayer-time { font-size: 18px; }
+.bottom-nav { display: none !important; }
+.settings-group { overflow: hidden; border: 1px solid var(--border); border-radius: 20px; background: var(--surface); box-shadow: var(--shadow); }
+.setting-row {
+  display: flex; align-items: center; gap: 14px; min-width: 0;
+  padding: 18px; border-bottom: 1px solid var(--border); background: var(--surface);
+}
+.setting-row:last-child { border-bottom: 0; }
+.setting-symbol, .content-card-icon {
+  display: grid; place-items: center; flex: 0 0 auto;
+  width: 46px; height: 46px; border-radius: 15px;
+  color: var(--green); background: var(--green-light);
+}
+.setting-copy { flex: 1; min-width: 0; }
+.setting-copy h3, .settings-section-title h3, .content-card h3 { margin: 0; color: var(--text); font-size: 17px; font-weight: 600; }
+.setting-copy p, .settings-section-title p { margin: 4px 0 0; color: var(--muted-text); font-size: 12px; line-height: 1.7; }
+.setting-select {
+  max-width: 140px; min-width: 104px; padding: 9px 28px 9px 11px;
+  border: 1px solid var(--border); border-radius: 11px;
+  color: var(--text); background: var(--surface); font-size: 13px;
+}
+.settings-section-title { margin: 27px 1px 13px; }
+.settings-section-title h3 { font-size: 19px; }
+.jumuah-setting { margin-top: 0; border: 1px solid var(--border); border-radius: 20px; box-shadow: var(--shadow); }
+.switch { position: relative; display: inline-flex; align-items: center; flex: 0 0 auto; cursor: pointer; }
+.switch input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.switch-track { position: relative; width: 48px; height: 28px; border-radius: 20px; background: #c9d4cd; transition: background .2s; }
+.switch-track::after { position: absolute; top: 4px; left: 4px; width: 20px; height: 20px; border-radius: 50%; background: white; box-shadow: 0 1px 4px #0002; content: ""; transition: transform .2s; }
+.switch input:checked + .switch-track { background: #08745b; }
+.switch input:checked + .switch-track::after { transform: translateX(20px); }
+.switch input:focus-visible + .switch-track { outline: 3px solid #78bca0; outline-offset: 3px; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+.settings-note { margin: 13px 2px 0; color: var(--muted-text); font-size: 12px; line-height: 1.8; }
+.content-card { padding: 24px; border: 1px solid var(--border); border-radius: 22px; background: var(--surface); box-shadow: var(--shadow); }
+.content-card-icon { width: 58px; height: 58px; margin-bottom: 17px; }
+.content-card-icon .svg-icon { width: 29px; height: 29px; }
+.content-card h3 { font-size: 21px; }
+.content-card p { max-width: 680px; margin: 10px 0 0; color: var(--muted-text); font-size: 14px; line-height: 1.9; }
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --page-bg: #101815; --surface: #18231e; --surface-soft: #1c3027;
+  --text: #e4eee8; --muted-text: #a0b2a8; --border: #2c4036;
+  --line: #2c4036; --card: #18231e; --shadow: 0 10px 28px rgba(0,0,0,.18);
+  --green-light: #203d30;
+}
+:root[data-theme="dark"] body { background: radial-gradient(ellipse at 50% 0, #20372d 0, transparent 42%), var(--page-bg); color: var(--text); }
+:root[data-theme="dark"] .app { background: transparent; }
+:root[data-theme="dark"] .section-heading h2,
+:root[data-theme="dark"] .prayer-info h3,
+:root[data-theme="dark"] .prayer-time,
+:root[data-theme="dark"] .item-main h3,
+:root[data-theme="dark"] .setting-copy h3,
+:root[data-theme="dark"] .settings-section-title h3,
+:root[data-theme="dark"] .content-card h3 { color: var(--text); }
+:root[data-theme="dark"] .next-card { background: linear-gradient(135deg,#182720,#20372c); border-color: #355647; }
+:root[data-theme="dark"] .next-card-bottom h3,
+:root[data-theme="dark"] .next-card-bottom > strong { color: #a5e2c1; }
+:root[data-theme="dark"] .next-label,
+:root[data-theme="dark"] .next-card-bottom p { color: #aec2b6; }
+:root[data-theme="dark"] .progress-track { background: #2a4034; }
+:root[data-theme="dark"] .prayer-card,
+:root[data-theme="dark"] .item-card,
+:root[data-theme="dark"] .settings-group,
+:root[data-theme="dark"] .setting-row,
+:root[data-theme="dark"] .jumuah-setting,
+:root[data-theme="dark"] .content-card,
+:root[data-theme="dark"] .search-box,
+:root[data-theme="dark"] .setting-select { background: var(--surface); border-color: var(--border); color: var(--text); }
+:root[data-theme="dark"] .prayer-card.is-highlighted { background: #20382c; border-color: #3a6b51; }
+:root[data-theme="dark"] .prayer-icon,
+:root[data-theme="dark"] .item-icon,
+:root[data-theme="dark"] .setting-symbol,
+:root[data-theme="dark"] .content-card-icon { background: #223c30; border-color: #345543; color: #a6e0bd; }
+:root[data-theme="dark"] .prayer-info p,
+:root[data-theme="dark"] .item-main p,
+:root[data-theme="dark"] .item-meta,
+:root[data-theme="dark"] .empty-state { color: #a0b2a8; }
+:root[data-theme="dark"] .empty-state { background: var(--surface); border-color: var(--border); }
+:root[data-theme="dark"] .search-box input { color: var(--text); }
+:root[data-theme="dark"] .settings-note { color: var(--muted-text); }
+:root[data-theme="dark"] .setting-row { border-bottom-color: var(--border); }
+@media (max-width: 900px) {
+  .app { max-width: 760px; }
+  .hero-toolbar { flex-wrap: wrap; gap: 16px; }
+  .top-nav {
+    order: 2; flex: 1 0 100%; justify-content: flex-start; gap: 5px;
+    overflow-x: auto; overflow-y: hidden; padding: 2px 0 5px;
+    scrollbar-width: thin; -webkit-overflow-scrolling: touch;
+  }
+  .top-nav .nav-item { padding: 9px 12px; background: rgba(255,255,255,.06); }
+  .top-nav .nav-item.active { background: rgba(255,255,255,.18); }
+  .main-content { padding-top: 23px; }
+}
+@media (max-width: 520px) {
+  .hero { padding: 15px 15px 17px; border-radius: 0 0 23px 23px; }
+  .brand-mark { width: 48px; height: 48px; border-radius: 16px; }
+  .brand-icon { width: 31px !important; height: 31px !important; }
+  .brand strong { font-size: 22px; }
+  .top-nav { margin-right: -15px; padding-right: 15px; }
+  .top-nav .nav-item { min-height: 38px; font-size: 12px; }
+  .prayer-list { grid-template-columns: minmax(0,1fr); }
+  .prayer-card { min-height: 86px; padding: 14px; }
+  .prayer-card:last-child { grid-column: auto; }
+  .setting-row { gap: 10px; padding: 14px; }
+  .setting-symbol { width: 40px; height: 40px; border-radius: 13px; }
+  .setting-copy h3 { font-size: 15px; }
+  .setting-copy p { font-size: 11px; }
+  .setting-select { min-width: 90px; max-width: 104px; font-size: 12px; }
+  .content-card { padding: 19px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .prayer-card, .switch-track, .switch-track::after { transition: none; }
 }
