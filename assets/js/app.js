@@ -12,10 +12,7 @@ const mosqueData = [
   { name: 'উত্তরপাড়া জামে মসজিদ', area: 'লোহাগড়া, নড়াইল', label: 'এলাকার মসজিদ' }
 ];
 
-const noticeData = [
-  { title: 'সালাত অ্যাপে স্বাগতম', date: 'সিস্টেম বিজ্ঞপ্তি', body: 'মসজিদের গুরুত্বপূর্ণ ঘোষণা এই বিভাগে প্রকাশিত হবে। বর্তমানে এটি নমুনা বিজ্ঞপ্তি।' },
-  { title: 'নামাজের সময় যাচাই করুন', date: 'গুরুত্বপূর্ণ স্মরণিকা', body: 'এখানে প্রদর্শিত সময়গুলো ডেমো ডেটা। সঠিক সময়ের জন্য মসজিদের ইমাম বা মুয়াজ্জিনের প্রকাশিত সময়সূচি অনুসরণ করুন।' }
-];
+const noticeData = [];
 
 const getElement = (id) => document.getElementById(id);
 const icon = (name, extraClass = '') =>
@@ -28,7 +25,7 @@ function renderPrayerTimes() {
     return '<article class="prayer-card' + (highlighted ? ' is-highlighted' : '') + '">' +
       '<div class="prayer-icon">' + icon(prayer.icon) + '</div>' +
       '<div class="prayer-info"><h3>' + prayer.name + '</h3><p>' + prayer.english + ' · ' + prayer.detail + '</p></div>' +
-      '<div class="prayer-time">' + prayer.time + '<small>' + (highlighted ? 'নমুনা সময়' : 'ডেমো সময়') + '</small></div>' +
+      '<div class="prayer-time">' + prayer.time + '</div>' +
     '</article>';
   }).join('');
 }
@@ -53,6 +50,10 @@ function renderMosques(query = '') {
 }
 
 function renderNotices() {
+  if (!noticeData.length) {
+    getElement('noticeResults').innerHTML = '<div class="empty-state">এখন কোনো বিজ্ঞপ্তি নেই।</div>';
+    return;
+  }
   getElement('noticeResults').innerHTML = noticeData.map((notice) =>
     '<article class="item-card notice-card"><div class="item-icon">' + icon('i-bell') + '</div>' +
     '<div class="item-main"><h3>' + notice.title + '</h3><time>' + notice.date + '</time>' +
