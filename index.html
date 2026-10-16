@@ -31,29 +31,22 @@
       <div class="hero-toolbar">
         <div class="brand">
           <div class="brand-mark"><svg class="svg-icon"><use href="#i-mosque"/></svg></div>
-          <div><strong>সালাত</strong><small>আপনার মসজিদ, আপনার সময়</small></div>
+          <div><strong>সালাত</strong></div>
         </div>
         <button class="icon-button" id="refreshButton" type="button" aria-label="তথ্য রিফ্রেশ" title="রিফ্রেশ"><svg class="svg-icon"><use href="#i-refresh"/></svg></button>
       </div>
-      <div class="mosque-meta">
-        <p class="eyebrow">আপনার এলাকার মসজিদ</p>
-        <h1 id="mosqueName">কেন্দ্রীয় জামে মসজিদ</h1>
-        <div class="location-chips"><span id="union">লোহাগড়া ইউনিয়ন</span><span id="upazila">লোহাগড়া উপজেলা</span><span id="district">নড়াইল জেলা</span></div>
-      </div>
-      <div class="hero-date"><span id="todayLabel">আজকের নামাজের সময়</span><span class="timezone">বাংলাদেশ সময় · BST</span></div>
       <div class="hero-orbit orbit-one"></div><div class="hero-orbit orbit-two"></div>
     </header>
 
     <main class="main-content">
       <section class="page active" id="timesPage" aria-labelledby="timesHeading">
-        <div class="section-heading"><div><h2 id="timesHeading">নামাজের সময়</h2><p>আজকের পাঁচ ওয়াক্ত নামাজ</p></div><span class="status-pill"><span class="status-dot"></span> নমুনা সময়সূচি</span></div>
+        <div class="section-heading"><div><h2 id="timesHeading">আজকের নামাজের সময়সূচি</h2></div></div>
         <article class="next-card">
-          <div class="next-card-top"><span class="next-label"><svg class="svg-icon"><use href="#i-clock"/></svg> পরবর্তী নামাজ</span><span class="demo-tag">ডেমো</span></div>
-          <div class="next-card-bottom"><div><h3 id="nextPrayerName">যোহর</h3><p>সময় নিশ্চিত করতে মসজিদের সময়সূচি দেখুন</p></div><strong id="nextPrayerTime">১২:১৫ PM</strong></div>
+          <div class="next-card-top"><span class="next-label"><svg class="svg-icon"><use href="#i-clock"/></svg> পরবর্তী নামাজ</span></div>
+          <div class="next-card-bottom"><div><h3 id="nextPrayerName">যোহর</h3></div><strong id="nextPrayerTime">১২:১৫ PM</strong></div>
           <div class="progress-track" aria-hidden="true"><span></span></div>
         </article>
         <div class="prayer-list" id="prayerList"></div>
-        <div class="disclaimer"><svg class="svg-icon"><use href="#i-info"/></svg><p>এখানে প্রদর্শিত নামাজের সময়গুলো নমুনা ডেটা। প্রকৃত সময়সূচি ও অ্যাডমিন প্যানেল পরে সংযুক্ত করা হবে।</p></div>
       </section>
 
       <section class="page" id="mosquesPage" aria-labelledby="mosquesHeading">
@@ -69,7 +62,6 @@
       </section>
     </main>
 
-    <footer class="app-footer">নামাজের সঠিক সময়ের জন্য মসজিদ কর্তৃপক্ষের প্রকাশিত সময়সূচি অনুসরণ করুন।</footer>
     <nav class="bottom-nav" aria-label="প্রধান নেভিগেশন">
       <button class="nav-item active" type="button" data-page="timesPage" aria-current="page"><span class="nav-icon"><svg class="svg-icon"><use href="#i-clock"/></svg></span><span>নামাজের সময়</span></button>
       <button class="nav-item" type="button" data-page="mosquesPage"><span class="nav-icon"><svg class="svg-icon"><use href="#i-pin"/></svg></span><span>নিকটবর্তী মসজিদ</span></button>
