@@ -28,3 +28,5 @@ body{background:radial-gradient(ellipse at 50% -10%,#e1f1e8 0,transparent 45%),#
 .svg-icon{width:22px;height:22px;display:block;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 .tab:focus-visible,button:focus-visible{outline:3px solid #64b89a;outline-offset:3px}
 @media(min-width:600px){.top{padding:28px 30px 31px}.content{padding:27px 24px}.prayer{min-height:88px}}
+
+.svg-library{display:none}.top-actions{position:absolute;right:18px;top:22px;z-index:2}.iconbtn{display:grid;place-items:center;width:40px;height:40px;border:1px solid #ffffff35;border-radius:14px;color:white;background:#ffffff12;backdrop-filter:blur(8px)}.iconbtn .svg-icon{width:20px;height:20px}.brand{padding-right:48px}.logo{flex-shrink:0}
