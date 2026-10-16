@@ -6,7 +6,7 @@ const prayerData = [
   { key: 'isha', name: 'এশা', english: 'Isha', time: '০৭:৩০ PM', icon: 'i-moon', detail: 'রাতের নামাজ' }
 ];
 
-const jumuahData = { key: 'jumuah', name: 'জুমার নামাজ', english: 'Jumu’ah', time: '১২:৩০ PM', icon: 'i-mosque', detail: 'শুক্রবারের জামাত' };
+const jumuahData = { key: 'jumuah', name: 'জুমার নামাজ', english: 'Jumu’ah', time: '—:—', icon: 'i-mosque', detail: 'শুক্রবারের জামাত' };
 const mosqueData = [
   { name: 'কেন্দ্রীয় জামে মসজিদ', area: 'লোহাগড়া, নড়াইল', label: 'প্রধান মসজিদ' },
   { name: 'বাজার জামে মসজিদ', area: 'লোহাগড়া বাজার, নড়াইল', label: 'এলাকার মসজিদ' },
@@ -88,13 +88,19 @@ function applyTheme(theme){
   document.querySelector('meta[name="theme-color"]')?.setAttribute('content',theme==='dark'?'#101a17':'#075e50');
   const selector=getElement('themeSelect');if(selector)selector.value=theme;
 }
-getElement('themeSelect')?.addEventListener('change',e=>{applyTheme(e.target.value);});
-getElement('languageSelect')?.addEventListener('change',e=>{document.documentElement.lang=e.target.value;translatePage();});
-getElement('jumuahToggle')?.addEventListener('change',renderPrayerTimes);
+getElement('themeSelect')?.addEventListener('change',e=>{applyTheme(e.target.value);try{localStorage.setItem('salat-theme',e.target.value);}catch(_){}});
+getElement('languageSelect')?.addEventListener('change',e=>{document.documentElement.lang=e.target.value;try{localStorage.setItem('salat-language',e.target.value);}catch(_){}translatePage();});
+getElement('jumuahToggle')?.addEventListener('change',e=>{try{localStorage.setItem('salat-show-jumuah',String(e.target.checked));}catch(_){}renderPrayerTimes();});
 document.querySelectorAll('[data-page]').forEach(button=>button.addEventListener('click',()=>showPage(button.dataset.page)));
 document.querySelector('[data-home-link]')?.addEventListener('click',e=>{e.preventDefault();showPage('timesPage');});
 getElement('mosqueSearchForm')?.addEventListener('submit',e=>{e.preventDefault();renderMosques(getElement('mosqueSearch').value);});
 getElement('refreshButton')?.remove();
-applyTheme('light');
+let savedTheme='light',savedLanguage='bn',savedJumuah=false;
+try{savedTheme=localStorage.getItem('salat-theme')||'light';savedLanguage=localStorage.getItem('salat-language')||'bn';savedJumuah=localStorage.getItem('salat-show-jumuah')==='true';}catch(_){}
+if(!['light','dark'].includes(savedTheme))savedTheme='light';
+if(!['bn','en'].includes(savedLanguage))savedLanguage='bn';
+if(getElement('jumuahToggle'))getElement('jumuahToggle').checked=savedJumuah;
+document.documentElement.lang=savedLanguage;
+applyTheme(savedTheme);
 translatePage();
 showPage('timesPage');
