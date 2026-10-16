@@ -6,13 +6,14 @@
   <meta name="theme-color" content="#075e50">
   <meta name="description" content="মসজিদের নামাজের সময়, নিকটবর্তী মসজিদ ও বিজ্ঞপ্তি।">
   <title>সালাত — নামাজের সময়</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="assets/css/style.css">
   <script src="assets/js/app.js" defer></script>
 </head>
 <body>
   <!-- Inline SVG symbols avoid external SVG <use> compatibility and CORS issues. -->
   <svg class="svg-defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <symbol id="i-mosque" viewBox="0 0 24 24"><path d="M3 21h18M5 21v-9h14v9M8 12V9l4-4 4 4v3M12 5V2M9 16h.01M15 16h.01M12 21v-5M3 12c2-2 4-2 6 0 2-2 4-2 6 0 2-2 4-2 6 0" /></symbol>
+    <symbol id="i-mosque" viewBox="0 0 64 64"><path d="M7 55h50M12 55V30h40v25M19 30V20l13-10 13 10v10M32 10V5M23 55V40h18v15M29 40v15M35 40v15M8 30c5-5 10-5 15 0 6-5 12-5 18 0 5-5 10-5 15 0M18 20h28M32 20v10"/></symbol>
     <symbol id="i-fajr" viewBox="0 0 24 24"><path d="M3 18h18M5 22h14M12 3v3M5 7l2 2M19 7l-2 2M4 13h2M18 13h2M8 18a4 4 0 0 1 8 0"/></symbol>
     <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></symbol>
     <symbol id="i-sunset" viewBox="0 0 24 24"><path d="M3 18h18M5 22h14M12 3v3M5 7l2 2M19 7l-2 2M4 13h2m12 0h2M8 18a4 4 0 0 1 8 0"/></symbol>
@@ -29,44 +30,68 @@
   <div class="app">
     <header class="hero">
       <div class="hero-toolbar">
-        <div class="brand">
-          <div class="brand-mark"><svg class="svg-icon"><use href="#i-mosque"/></svg></div>
-          <div><strong>সালাত</strong></div>
-        </div>
-        <button class="icon-button" id="refreshButton" type="button" aria-label="তথ্য রিফ্রেশ" title="রিফ্রেশ"><svg class="svg-icon"><use href="#i-refresh"/></svg></button>
+        <a class="brand" href="#" aria-label="সালাত হোম" data-home-link>
+          <div class="brand-mark"><svg class="svg-icon brand-icon"><use href="#i-mosque"/></svg></div>
+          <div><strong data-i18n="appName">সালাত</strong><small data-i18n="appSubtitle">মসজিদ সালাত ব্যবস্থাপনা</small></div>
+        </a>
+        <nav class="top-nav" aria-label="প্রধান নেভিগেশন">
+          <button class="nav-item active" type="button" data-page="timesPage" data-i18n="navTimes" aria-current="page">নামাজের সময়</button>
+          <button class="nav-item" type="button" data-page="mosquesPage" data-i18n="navMosques">নিকটবর্তী মসজিদ</button>
+          <button class="nav-item" type="button" data-page="noticesPage" data-i18n="navNotices">বিজ্ঞপ্তি</button>
+          <button class="nav-item" type="button" data-page="settingsPage" data-i18n="navSettings">সেটিংস</button>
+          <button class="nav-item" type="button" data-page="aboutPage" data-i18n="navAbout">আমাদের সম্পর্কে</button>
+          <button class="nav-item" type="button" data-page="contactPage" data-i18n="navContact">যোগাযোগ</button>
+        </nav>
       </div>
       <div class="hero-orbit orbit-one"></div><div class="hero-orbit orbit-two"></div>
     </header>
 
     <main class="main-content">
       <section class="page active" id="timesPage" aria-labelledby="timesHeading">
-        <div class="section-heading"><div><h2 id="timesHeading">আজকের নামাজের সময়সূচি</h2></div></div>
+        <div class="section-heading"><div><h2 id="timesHeading" data-i18n="timesTitle">নামাজের সময়</h2><p data-i18n="timesSubtitle">পাঁচ ওয়াক্ত নামাজের নির্ধারিত সময়</p></div></div>
         <article class="next-card">
-          <div class="next-card-top"><span class="next-label"><svg class="svg-icon"><use href="#i-clock"/></svg> পরবর্তী নামাজ</span></div>
-          <div class="next-card-bottom"><div><h3 id="nextPrayerName">যোহর</h3></div><strong id="nextPrayerTime">১২:১৫ PM</strong></div>
+          <div class="next-card-top"><span class="next-label"><svg class="svg-icon"><use href="#i-clock"/></svg> <span data-i18n="nextPrayer">পরবর্তী নামাজ</span></span></div>
+          <div class="next-card-bottom"><div><h3 id="nextPrayerName">যোহর</h3><p data-i18n="prayerTimesManaged">মসজিদ কর্তৃপক্ষের নির্ধারিত সময়</p></div><strong id="nextPrayerTime">১২:১৫ PM</strong></div>
           <div class="progress-track" aria-hidden="true"><span></span></div>
         </article>
         <div class="prayer-list" id="prayerList"></div>
       </section>
 
       <section class="page" id="mosquesPage" aria-labelledby="mosquesHeading">
-        <div class="section-heading"><div><h2 id="mosquesHeading">নিকটবর্তী মসজিদ</h2><p>নাম অথবা এলাকা দিয়ে খুঁজুন</p></div></div>
-        <form class="search-form" id="mosqueSearchForm" role="search"><label class="search-box"><svg class="svg-icon"><use href="#i-search"/></svg><input id="mosqueSearch" type="search" placeholder="মসজিদের নাম বা এলাকা" aria-label="মসজিদের নাম বা এলাকা"></label><button type="submit" class="primary-button">খুঁজুন</button></form>
+        <div class="section-heading"><div><h2 id="mosquesHeading" data-i18n="navMosques">নিকটবর্তী মসজিদ</h2><p data-i18n="searchMosques">নাম অথবা এলাকা দিয়ে খুঁজুন</p></div></div>
+        <form class="search-form" id="mosqueSearchForm" role="search"><label class="search-box"><svg class="svg-icon"><use href="#i-search"/></svg><input id="mosqueSearch" type="search" placeholder="মসজিদের নাম বা এলাকা" aria-label="মসজিদের নাম বা এলাকা" data-i18n-placeholder="searchPlaceholder"></label><button type="submit" class="primary-button" data-i18n="searchButton">খুঁজুন</button></form>
         <div id="mosqueResults" aria-live="polite"></div>
-        <div class="disclaimer"><svg class="svg-icon"><use href="#i-info"/></svg><p>এগুলো নমুনা মসজিদ। প্রকৃত দূরত্ব ও অবস্থান দেখাতে লোকেশন অনুমতি এবং যাচাইকৃত মসজিদ ডেটাবেস প্রয়োজন।</p></div>
+        
       </section>
 
       <section class="page" id="noticesPage" aria-labelledby="noticesHeading">
-        <div class="section-heading"><div><h2 id="noticesHeading">বিজ্ঞপ্তি</h2><p>মসজিদের ঘোষণা ও গুরুত্বপূর্ণ তথ্য</p></div><span class="status-pill">সর্বশেষ</span></div>
+        <div class="section-heading"><div><h2 id="noticesHeading" data-i18n="navNotices">বিজ্ঞপ্তি</h2><p data-i18n="noticesSubtitle">মসজিদের ঘোষণা ও গুরুত্বপূর্ণ তথ্য</p></div></div>
         <div class="notice-list" id="noticeResults" aria-live="polite"></div>
       </section>
+
+      <section class="page" id="settingsPage" aria-labelledby="settingsHeading">
+        <div class="section-heading"><div><h2 id="settingsHeading" data-i18n="navSettings">সেটিংস</h2><p data-i18n="settingsSubtitle">অ্যাপ আপনার পছন্দমতো সাজান</p></div></div>
+        <div class="settings-group">
+          <article class="setting-row"><div class="setting-symbol"><svg class="svg-icon"><use href="#i-sun"/></svg></div><div class="setting-copy"><h3 data-i18n="appearance">থিম</h3><p data-i18n="appearanceDesc">ডার্ক মুড বা লাইট মুড নির্বাচন করুন</p></div><select id="themeSelect" class="setting-select" aria-label="থিম"><option value="light">লাইট</option><option value="dark">ডার্ক</option></select></article>
+          <article class="setting-row"><div class="setting-symbol"><svg class="svg-icon"><use href="#i-globe"/></svg></div><div class="setting-copy"><h3 data-i18n="language">ভাষা</h3><p data-i18n="languageDesc">অ্যাপের ভাষা পরিবর্তন করুন</p></div><select id="languageSelect" class="setting-select" aria-label="ভাষা"><option value="bn">বাংলা</option><option value="en">English</option></select></article>
+        </div>
+        <div class="settings-section-title"><h3 data-i18n="prayerManagement">নামাজ ম্যানেজমেন্ট</h3><p data-i18n="prayerManagementDesc">নামাজের সময় বিভাগে কোন নামাজ দেখানো হবে নির্বাচন করুন।</p></div>
+        <article class="setting-row jumuah-setting"><div class="setting-symbol"><svg class="svg-icon"><use href="#i-clock"/></svg></div><div class="setting-copy"><h3 data-i18n="jumuah">জুমার নামাজ</h3><p data-i18n="jumuahDesc">চালু করলে নামাজের সময়ের তালিকায় দেখাবে</p></div><label class="switch"><input type="checkbox" id="jumuahToggle"><span class="switch-track"></span><span class="sr-only" data-i18n="showJumuah">জুমার নামাজ দেখান</span></label></article>
+        <p class="settings-note" data-i18n="adminNote">নামাজের সময় মসজিদ কর্তৃপক্ষের অ্যাডমিনগণ নির্ধারণ করবেন। এই ব্যবস্থাপনা পরে সংযুক্ত করা হবে।</p>
+      </section>
+
+      <section class="page" id="aboutPage" aria-labelledby="aboutHeading">
+        <div class="section-heading"><div><h2 id="aboutHeading" data-i18n="navAbout">আমাদের সম্পর্কে</h2></div></div>
+        <article class="content-card"><div class="content-card-icon"><svg class="svg-icon"><use href="#i-mosque"/></svg></div><h3 data-i18n="aboutTitle">সালাত — মসজিদ সালাত ব্যবস্থাপনা</h3><p data-i18n="aboutText">মসজিদের নির্ধারিত নামাজের সময়, ঘোষণা এবং প্রয়োজনীয় তথ্য সহজে দেখানোর জন্য তৈরি একটি পরিষ্কার ও ব্যবহারবান্ধব অ্যাপ।</p></article>
+      </section>
+
+      <section class="page" id="contactPage" aria-labelledby="contactHeading">
+        <div class="section-heading"><div><h2 id="contactHeading" data-i18n="navContact">যোগাযোগ</h2><p data-i18n="contactSubtitle">মসজিদ কর্তৃপক্ষের সঙ্গে যোগাযোগের তথ্য</p></div></div>
+        <article class="content-card"><div class="content-card-icon"><svg class="svg-icon"><use href="#i-bell"/></svg></div><h3 data-i18n="contactTitle">যোগাযোগের তথ্য</h3><p data-i18n="contactText">যোগাযোগের ফোন নম্বর, ইমেইল ও ঠিকানা অ্যাডমিন প্যানেল থেকে পরে যুক্ত করা হবে।</p></article>
+      </section>
+
     </main>
 
-    <nav class="bottom-nav" aria-label="প্রধান নেভিগেশন">
-      <button class="nav-item active" type="button" data-page="timesPage" aria-current="page"><span class="nav-icon"><svg class="svg-icon"><use href="#i-clock"/></svg></span><span>নামাজের সময়</span></button>
-      <button class="nav-item" type="button" data-page="mosquesPage"><span class="nav-icon"><svg class="svg-icon"><use href="#i-pin"/></svg></span><span>নিকটবর্তী মসজিদ</span></button>
-      <button class="nav-item" type="button" data-page="noticesPage"><span class="nav-icon"><svg class="svg-icon"><use href="#i-bell"/></svg></span><span>বিজ্ঞপ্তি</span></button>
-    </nav>
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
   </div>
 </body>
