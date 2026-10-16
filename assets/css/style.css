@@ -977,3 +977,6 @@ body { background: var(--page-bg); color: var(--text); }
 @media (prefers-reduced-motion: reduce) {
   .prayer-card, .switch-track, .switch-track::after { transition: none; }
 }
+
+/* No mobile bottom bar: navigation now lives in the header. */
+body { padding-bottom: 0 !important; }
