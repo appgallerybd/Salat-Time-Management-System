@@ -92,3 +92,5 @@ button:focus-visible,input:focus-visible{outline:3px solid #78bca0;outline-offse
 @media(min-width:520px){.hero{padding:26px 28px 27px}.main-content{padding:26px 24px 22px}.prayer-list{grid-template-columns:repeat(2,minmax(0,1fr))}.prayer-card{min-height:88px}.prayer-card:last-child{grid-column:1/-1}.bottom-nav{border-right:1px solid #e1eae4;border-left:1px solid #e1eae4;border-radius:16px 16px 0 0}}
 @media(max-width:360px){.hero{padding-right:15px;padding-left:15px}.main-content{padding-right:12px;padding-left:12px}.section-heading{align-items:flex-start}.section-heading h2{font-size:19px}.status-pill{font-size:10px;padding:5px 7px}.prayer-card{gap:9px;padding:11px}.prayer-icon{width:40px;height:40px}.prayer-time{font-size:14px}.timezone{font-size:10px}.next-card{padding:15px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+.inline-icon{display:inline-block;vertical-align:-3px;width:14px;height:14px;margin-right:2px}
